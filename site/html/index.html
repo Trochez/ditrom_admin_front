@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+    <script type="text/javascript" src="https://checkout.wompi.co/widget.js"></script>
+
+    <!-- <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vueperslides"></script>
+    <link href="https://unpkg.com/vueperslides/dist/vueperslides.css" rel="stylesheet"> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+
+    <script src="https://unpkg.com/vue-ui-preloader"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">
+
+		
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/properties.js"></script>
+
+    <script type="text/javascript" src = "../js/mainmenu/main_menu.js"></script>
+    <script type="text/javascript" src = "../js/mainmenu/option_menu.js"></script>
+
+    <script type="text/javascript" src = "../js/product_admin/products_board.js"></script>
+    <script type="text/javascript" src = "../js/product_admin/product_item.js"></script>
+
+    <script type="text/javascript" src = "../js/window_tags/tags_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_tags/tag_list.js"></script>
+    <script type="text/javascript" src = "../js/window_tags/tag_product.js"></script>
+    <script type="text/javascript" src = "../js/window_tags/tag.js"></script>
+
+    <script type="text/javascript" src = "../js/window_img/img_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_img/img_list.js"></script>
+    <script type="text/javascript" src = "../js/window_img/img_product.js"></script>
+    <script type="text/javascript" src = "../js/window_img/img_zoom.js"></script>
+    <script type="text/javascript" src = "../js/window_img/img_new.js"></script>
+    <script type="text/javascript" src = "../js/window_img/input_file.js"></script>
+
+    <script type="text/javascript" src = "../js/window_feature/feature_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_feature/feature_list.js"></script>
+    <script type="text/javascript" src = "../js/window_feature/feature_product.js"></script>
+    <script type="text/javascript" src = "../js/window_feature/feature.js"></script>
+    <script type="text/javascript" src = "../js/window_feature/feature_in_product.js"></script>
+    <script type="text/javascript" src = "../js/window_feature/option_list.js"></script>
+
+    <script type="text/javascript" src = "../js/category_admin/category_board.js"></script>
+    <script type="text/javascript" src = "../js/category_admin/category.js"></script>
+
+    <script type="text/javascript" src = "../js/window_tag_category/tag_pool.js"></script>
+    <script type="text/javascript" src = "../js/window_tag_category/tag_category_modal.js"></script>
+
+    <script type="text/javascript" src = "../js/promotion_admin/promotion.js"></script>
+    <script type="text/javascript" src = "../js/promotion_admin/promotion_board.js"></script>
+    <script type="text/javascript" src = "../js/promotion_admin/tag_promotion.js"></script>
+
+    <script type="text/javascript" src = "../js/window_tag_promotion/tag_pool.js"></script>
+    <script type="text/javascript" src = "../js/window_tag_promotion/tag_promotion_modal.js"></script>
+
+    <script type="text/javascript" src = "../js/tag_admin/tag_board.js"></script>
+    <script type="text/javascript" src = "../js/tag_admin/tag_item.js"></script>
+
+    <script type="text/javascript" src = "../js/window_product_tag/product_list.js"></script>
+    <script type="text/javascript" src = "../js/window_product_tag/product_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_product_tag/product_tag.js"></script>
+    <script type="text/javascript" src = "../js/window_product_tag/product_tag_item.js"></script>
+
+    <script type="text/javascript" src = "../js/user_admin/users_board.js"></script>
+    <script type="text/javascript" src = "../js/user_admin/user_item.js"></script>
+
+    <script type="text/javascript" src = "../js/window_user/shopping_history_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_user/buy_item.js"></script>
+    <script type="text/javascript" src = "../js/window_user/product_buy_list.js"></script>
+    <script type="text/javascript" src = "../js/window_user/product_buy_item.js"></script>
+    <script type="text/javascript" src = "../js/window_user/img_product_buy_item.js"></script>
+
+    <script type="text/javascript" src = "../js/window_inventory/inventory_modal.js"></script>
+    <script type="text/javascript" src = "../js/window_inventory/inventory_list.js"></script>
+    <script type="text/javascript" src = "../js/window_inventory/inventory_product_item.js"></script>
+
+
+	<title>
+		ditrom admin
+	</title>
+</head>
+<body class="body_admin">
+
+
+	<div ref = "main_menu" id="main_menu" class="">
+
+		<div class = "logo" v-on:click="reload">
+			<img src = "../img/ditrom.png"/>
+		</div>
+
+		<main_menu :options = "options"></main_menu>
+
+	</div>
+	<div id="screen" class="screen"></div>
+
+</body> 	
+</html>
+
+<script type="text/javascript">
+
+    if(!localStorage["user_#$%&"]){
+        window.location = "indexLogin.html"
+    }
+
+	$("#screen").load("product_admin.html")
+
+
+    const params = new URLSearchParams(window.location.search)
+
+	var vindex = new Vue({
+	  el: '#main_menu',
+	  data () {
+	    return {
+
+	    	options:[
+    					{
+    						name:"Products",
+    						icon:"fas fa-tshirt",
+    						screen:"product_admin.html"
+    					},
+                        {
+                            name:"Categories",
+                            icon:"fas fa-layer-group",
+                            screen:"category_admin.html"
+                        },
+    					{
+    						name:"Sales",
+    						icon:"fas fa-star",
+    						screen:"promotion_admin.html"
+    	
+    					},
+    					{
+    						name:"Tags",
+    						icon:"fas fa-tags",
+    						screen:"tag_admin.html"
+    					},
+    					{
+    						name:"Users",
+    						icon: "fas fa-users",
+    						screen:"user_admin.html"
+    					}
+    				]
+
+	    }
+	  },
+      mounted(){
+        console.log("!!!!! path   "+JSON.stringify(params))
+
+        if(params.has('screen')){
+
+            //console.log("in ref  "+this.$route.query.ref)
+
+            $("#screen").load(params.get('screen'))
+
+
+        }
+
+       
+      },
+	  methods:{
+	  	reload(){
+	  		window.location = "index.html"
+	  	}
+	  }
+  	});
+
+
+</script>

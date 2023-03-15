@@ -1,0 +1,23 @@
+
+:root{
+	--main-color:#000000;
+	--second-color:#808080;
+	--third-color:#647C90;
+	--fourth-color:#970C10;
+	--fiveth-color:#86b8dd;
+
+	--main-color-05:rgba(0,0,0,0.5);
+	--second-color-05:rgba(128,128,128,0.5);
+	--third-color-05:rgba(100,124,144,0.5);
+	--fourth-color-05:rgba(151,12,16,0.5);
+	--fiveth-color-05:rgba(134,184,221,0.5);
+
+	--error-color:rgba(255,0,0,0.2);
+
+	--main-back:rgba(255,255,255,1);
+
+	--hover-color:rgba(125,112,152,0.5);
+
+
+
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+	<div id="promotion_admin">
+
+		<label class=" title_add_product " title = "Set promotion" v-on:click="set_promotion">
+			<i class="fas fa-plus-square add_product " title="Set promotion"></i>
+		</label>
+
+		<label class="title"><b>Promotions</b></label>
+
+		<i class="fas fa-search search_tag_icon"></i>
+		<input type="text" name="search_promotion" id = "search_promotion" ref = "search_promotion" v-model="search_promotion" class="search_promotion">
+
+		<promotion_board :search_promotion="search_promotion"/>
+		
+	</div>
+
+	<div id="img_zoom_modal" >
+		<img_zoom :image="image"/>
+	</div>
+
+	<div id="loading_modal" >
+
+	      <loader object="#000000" color1="#ffffff" color2="#000000" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular" v-if="visible"></loader>
+
+
+	</div>
+
+	<div id="modal">
+
+		<tag_promotion_modal v-if="showTag" :selected_promotion="selected_promotion" />
+		
+	</div>
+
+	<div id="loading_modal" >
+
+		<loader object="#000000" color1="#ffffff" color2="#000000" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular" v-if="visible"></loader>
+
+  	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+	Vue.use(loader)
+
+	var modal = new Vue({
+		el: '#modal',
+		data () {
+			return {
+
+				selected_promotion:{
+					tag_id:null
+				},
+		    	showTag:false
+
+			}
+		},
+		mounted(){
+
+			this.$root.$on("img_updated",function(){
+
+				console.log("in img_updated")
+
+				loading_modal.show_loading()
+
+			})
+
+			this.$root.$on("change_promotions",function(){
+
+				console.log("in change_promotions html modal")
+
+				vpromotion_board.$emit("change_promotions")
+
+				this.showTag=false
+
+			})
+
+		
+		}
+  	});
+
+
+	var img_zoom_modal = new Vue({
+		el: '#img_zoom_modal',
+		data () {
+			return {
+
+				image:null
+
+			}
+		},
+		mounted(){
+
+			this.$root.$on("hide_img",function(){
+
+		      this.image = null
+
+		    })
+
+
+		}
+  	});
+
+	var loading_modal = new Vue({
+
+		el: '#loading_modal',
+
+		components:{
+			loader:loader
+		},
+		
+		data () {
+			return {
+	            visible: false
+	        }
+		},
+		methods:{
+			show_loading:function(){
+
+
+				this.visible = !this.visible
+
+			}
+		}
+  	});
+
+
+	var vpromotion_board = new Vue({
+		  
+		  el: '#promotion_admin',
+		  data () {
+		    return {
+
+		    	promotions:[],
+		    	search_promotion:""
+		    	
+		    }
+		  },
+		  mounted(){
+			this.$root.$on("img_updated",function(){
+
+				console.log("in img_updated vpromotion_board")
+
+				loading_modal.show_loading()
+
+			})
+
+		  },
+		  methods:{
+		  	
+		  	set_promotion:function(){
+		  		this.$root.$emit("set_promotion")
+		  	}
+		  }
+	  	});
+
+</script>

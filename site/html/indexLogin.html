@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://momentjs.com/downloads/moment.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+	<!-- <script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/vueperslides"></script>
+	<link href="https://unpkg.com/vueperslides/dist/vueperslides.css" rel="stylesheet"> -->
+
+	<script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+	<script src="https://unpkg.com/vue-router"></script>
+
+    <script src="https://unpkg.com/vue-ui-preloader"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">
+
+		
+
+  	<link rel="stylesheet" href="../css/style.css">
+    <script src="../js/properties.js"></script>
+
+	<title></title>
+</head>
+<body>
+
+	<div id = "main_div" class="screenLogin">
+
+		<div class="col-sm-12 ">
+
+			<div class="col-sm-12 logoLogin tcenter">
+				<img src = "../img/ditrom.png"/>
+			</div>
+			
+		</div>
+
+		<div class="col-sm-12 tcenter loginElement">
+			<div class="col-sm-12 tcenter">
+				<label>User:</label>
+			</div>
+			<div class="col-sm-12 tcenter">
+				<input type="text" name="user" id="user" ref="user">
+			</div>
+			
+		</div>
+
+
+		<div class="col-sm-12 tcenter loginElement">
+			<div class="col-sm-12 tcenter">
+				<label>Pass:</label>
+
+			</div>
+			<div class="col-sm-12 tcenter">
+				<input type="password" name="pass" id="pass" ref="pass">
+			</div>
+		</div>
+
+		<div class="allwidth buttonpatern highlight" v-on:click="login">
+			<div class="highlight button allheight">
+				<label>Ingresar</label>
+				<i class="fas fa-sign-in-alt"></i>
+			</div >
+				
+		</div>
+		
+		
+
+	</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	
+	var vindex = new Vue({
+	  el: '#main_div',
+	  data () {
+	    return {
+
+	    }
+	  },
+	  methods:{
+	  	reload(){
+	  		window.location = "index.html"
+	  	},
+	  	login(){
+
+	  		var data = {
+	  			user:this.$refs.user.value,
+	  			pass:this.$refs.pass.value
+	  		}
+
+	  		console.log(properties.protocol+properties.baseurl+properties.port+'/loginAdmin')
+
+	  		axios
+		      .post(properties.protocol+properties.baseurl+properties.port+'/loginAdmin',{data:data})
+		      .then(response => {
+
+		      	if(response.data){
+
+		      		localStorage.setItem("user_#$%&",this.$refs.user.value)
+
+		      		window.location = "index.html"
+		      		
+		      	}else{
+		      		alert("Unknown user")
+		      	}
+
+			  	}).catch(error => {
+					console.log(error)
+					this.errored=true
+				})
+				.finally(() => {
+					this.ready = true
+				})
+
+	  	}
+	  }
+  	});
+
+
+</script>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+	<div id="products_admin">
+
+		<label class=" title_add_product " title = "Create product" v-on:click="create_product">
+			<i class="fas fa-plus-square add_product " title="Create product"></i>
+		</label>
+
+		<label class="title"><b>Products</b></label>
+
+		<i class="fas fa-search search_tag_icon"></i>
+		<input type="text" name="search_product" id = "search_product" ref = "search_product" v-model="search_product" class="search_product">
+
+		<products_board :search_product="search_product"/>
+		
+	</div>
+
+	<div id="modal">
+
+		<tags_modal v-if="showTag" :selected_product="selected_product"/>
+		
+	</div>
+
+	<div id="imgmodal">
+
+		<img_modal v-if="showImg" :selected_product="selected_product"/>
+		
+		
+	</div>
+
+	<div id="featuremodal">
+
+		<feature_modal v-if="showFeature" :selected_product="selected_product"/>
+		
+	</div>
+
+	<div id="inventorymodal">
+
+		<inventory_modal v-if="showInventory" :selected_product="selected_product"/>
+		
+	</div>
+
+	<div id="img_zoom_modal" >
+		<img_zoom :image="image"/>
+	</div>
+
+	<div id="loading_modal" >
+
+	      <loader object="#000000" color1="#ffffff" color2="#000000" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular" v-if="visible"></loader>
+
+
+	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+	Vue.use(loader)
+
+
+	var img_zoom_modal = new Vue({
+		el: '#img_zoom_modal',
+		data () {
+			return {
+
+				image:null
+
+			}
+		},
+		mounted(){
+
+			this.$root.$on("hide_img",function(){
+
+		      this.image = null
+
+		    })
+
+
+		}
+  	});
+
+	var loading_modal = new Vue({
+
+		el: '#loading_modal',
+
+		components:{
+			loader:loader
+		},
+		
+		data () {
+			return {
+	            visible: false
+	        }
+		},
+		methods:{
+			show_loading:function(){
+
+
+				this.visible = !this.visible
+
+			}
+		}
+  	});
+
+	var modal = new Vue({
+		el: '#modal',
+		data () {
+			return {
+
+				selected_product:{
+					ref:null
+				},
+		    	showTag:false,
+
+			}
+		}
+  	});
+
+  	var featuremodal = new Vue({
+		el: '#featuremodal',
+		data () {
+			return {
+
+				selected_product:{
+					ref:null
+				},
+		    	showFeature:false,
+
+			}
+		}
+  	});
+
+  	var imgmodal = new Vue({
+		el: '#imgmodal',
+		data () {
+			return {
+
+				selected_product:{
+					ref:null
+				},
+		    	showImg:false,
+
+			}
+		},
+		mounted(){
+
+			this.$root.$on("show_img",function(image){
+
+		      img_zoom_modal.image = image
+
+		    })
+
+	      	this.$root.$on("img_updated",function(){
+
+	      		console.log("in img_updated")
+
+	      		loading_modal.show_loading()
+		    	
+		    })
+
+		}
+  	});
+
+
+	var vproduct_board = new Vue({
+		  el: '#products_admin',
+		  data () {
+		    return {
+
+		    	products:[],
+		    	search_product:""
+		    	
+		    }
+		  },
+		  methods:{
+		  	getProducts:function(){
+
+
+		  		axios
+				      .post(properties.protocol+properties.baseurl+properties.port+'/getProducts')
+				      .then(response => {
+
+				      	this.products = response.data;
+
+					  	}).catch(error => {
+							console.log(error)
+							this.errored=true
+						})
+						.finally(() => {
+							this.ready = true
+						})
+
+		  	},
+		  	create_product:function(){
+		  		this.$root.$emit("create_product")
+		  	}
+		  }
+	  	});
+
+		var inventorymodal = new Vue({
+		el: '#inventorymodal',
+		data () {
+			return {
+
+				selected_product:{
+					ref:null
+				},
+		    	showInventory:false,
+
+			}
+		}
+  	});
+
+</script>

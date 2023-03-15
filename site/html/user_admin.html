@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+	<div id="user_admin">
+
+		
+		<label class="title"><b>Users</b></label>
+
+		<i class="fas fa-search search_tag_icon"></i>
+		<input type="text" name="search_user" id = "search_user" ref = "search_user" v-model="search_user" class="search_user">
+
+		<users_board :search_user="search_user"/>
+		
+	</div>
+
+	<div id="modal">
+
+		<shopping_history_modal v-if="showUser" :selected_user="selected_user"/>
+		
+	</div>
+
+	
+
+	
+</body>
+</html>
+
+<script type="text/javascript">
+
+	Vue.use(loader)
+
+
+	
+
+	var modal = new Vue({
+		el: '#modal',
+		data () {
+			return {
+
+				selected_user:{
+					ref:null
+				},
+		    	showUser:false,
+
+			}
+		},
+		mounted(){
+			this.$root.$on("show_user_buy_list",function(event){
+				if(event.target.id != 'modaluser' && this.showUser){
+					return
+				}
+
+				this.showUser = !this.showUser
+				
+			})
+		}
+  	});
+
+	var vuser_board = new Vue({
+		  el: '#user_admin',
+		  data () {
+		    return {
+
+		    	users:[],
+		    	search_user:""
+		    	
+		    }
+		  },
+		  methods:{
+		  	getUsers:function(){
+
+
+		  		axios
+				      .post(properties.protocol+properties.baseurl+properties.port+'/getUsers')
+				      .then(response => {
+
+				      	this.users = response.data;
+
+					  	}).catch(error => {
+							console.log(error)
+							this.errored=true
+						})
+						.finally(() => {
+							this.ready = true
+						})
+
+		  	}
+		  }
+	  	});
+
+</script>

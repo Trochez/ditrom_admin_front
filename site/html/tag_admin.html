@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+	<div id="tag_admin">
+
+		<label class=" title_add_product " title = "Set tag" v-on:click="set_tag">
+			<i class="fas fa-plus-square add_product " title="Set tag"></i>
+		</label>
+
+		<label class="title"><b>Tags</b></label>
+
+		<i class="fas fa-search search_tag_icon"></i>
+		<input type="text" name="search_tag" id = "search_tag" ref = "search_tag" v-model="search_tag" class="search_tag">
+
+		<tag_board :search_tag="search_tag"/>
+		
+	</div>
+	
+	<div id="modal">
+
+		<product_modal v-if="showProduct" :selected_tag="selected_tag" />
+		
+	</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+	Vue.use(loader)
+
+	var modal = new Vue({
+		el: '#modal',
+		data () {
+			return {
+
+				selected_tag:{
+					tag:null
+				},
+		    	showProduct:false
+
+			}
+		},
+		mounted(){
+			
+		
+		}
+  	});
+
+	var vtag_board = new Vue({
+		  el: '#tag_admin',
+		  data () {
+		    return {
+
+		    	tags:[],
+		    	search_tag:""
+		    	
+		    }
+		  },
+		  mounted(){
+		  },
+		  methods:{
+
+            set_tag:function(){
+
+                //console.log("tag  "+JSON.stringify(tag))
+
+                var tag = window.prompt("write the new tag name","tag");
+
+
+                axios
+                .post(properties.protocol+properties.baseurl+properties.port+'/addTag',{
+                data:{
+                    tag:tag
+                }
+                })
+                .then(response => {
+
+                    console.log("Tag asignado correctamente")
+                    this.$root.$emit("change_tag")
+
+
+                })
+                .catch(error => {
+                    alert("Error asignando tag")
+                    console.log(error)
+                    this.errored=true
+                })
+                .finally(() => {
+                    this.ready = true
+                })
+
+
+                }
+		  	
+		  
+		  }
+	  	});
+
+</script>

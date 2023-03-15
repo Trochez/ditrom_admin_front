@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://momentjs.com/downloads/moment.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+	<script type="text/javascript" src="https://checkout.wompi.co/widget.js"></script>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/vueperslides"></script>
+	<link href="https://unpkg.com/vueperslides/dist/vueperslides.css" rel="stylesheet">
+
+	<script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+	<script src="https://unpkg.com/vue-router"></script>
+</head>
+<body>
+
+	<div id="test">
+		<input_file/>
+	</div>
+
+
+</body>
+</html>
+<script type="text/javascript">
+
+	Vue.component('input_file',{
+  		props: ['selected_product'],
+  		methods:{
+
+    
+			showFiles(event){
+		  		console.log(event.target.files)
+		  	}
+	    },
+	    template: '<input type="file" name="file" id="file" ref="file" multiple v-on:change="showFiles">'
+				//
+	})
+	
+	var vtest = new Vue({
+	  el: '#test',
+	  data () {
+	    return {
+
+	    }
+	  },
+	  methods:{
+	  	showFiles(event){
+	  		console.log(event.target.files);
+	  	}
+	  }
+  	});
+
+</script>

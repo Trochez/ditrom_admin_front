@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+	<div id="category_admin">
+
+		<label class=" title_add_product " title = "Set category" v-on:click="set_category">
+			<i class="fas fa-plus-square add_product " title="Set category"></i>
+		</label>
+
+		<label class="title"><b>Categories</b></label>
+
+		<i class="fas fa-search search_tag_icon"></i>
+		<input type="text" name="search_category" id = "search_category" ref = "search_category" v-model="search_category" class="search_category">
+
+		<category_board :search_category="search_category"/>
+		
+	</div>
+
+	<div id="img_zoom_modal" >
+		<img_zoom :image="image"/>
+	</div>
+
+	<div id="loading_modal" >
+
+	      <loader object="#000000" color1="#ffffff" color2="#000000" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular" v-if="visible"></loader>
+
+
+	</div>
+
+	<div id="modal">
+
+		<tag_category_modal v-if="showTag" :selected_category="selected_category" />
+		
+	</div>
+
+	<div id="loading_modal" >
+
+		<loader object="#000000" color1="#ffffff" color2="#000000" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular" v-if="visible"></loader>
+
+  	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+	Vue.use(loader)
+
+	var modal = new Vue({
+		el: '#modal',
+		data () {
+			return {
+
+				selected_category:{
+					tag:null
+				},
+		    	showTag:false
+
+			}
+		},
+		mounted(){
+			this.$root.$on("img_updated",function(){
+
+				console.log("in img_updated")
+
+				loading_modal.show_loading()
+
+			})
+		
+		}
+  	});
+
+
+	var img_zoom_modal = new Vue({
+		el: '#img_zoom_modal',
+		data () {
+			return {
+
+				image:null
+
+			}
+		},
+		mounted(){
+
+			this.$root.$on("hide_img",function(){
+
+		      this.image = null
+
+		    })
+
+
+		}
+  	});
+
+	var loading_modal = new Vue({
+
+		el: '#loading_modal',
+
+		components:{
+			loader:loader
+		},
+		
+		data () {
+			return {
+	            visible: false
+	        }
+		},
+		methods:{
+			show_loading:function(){
+
+
+				this.visible = !this.visible
+
+			}
+		}
+  	});
+
+
+	var vcategory_board = new Vue({
+		  el: '#category_admin',
+		  data () {
+		    return {
+
+		    	categories:[],
+		    	search_category:""
+		    	
+		    }
+		  },
+		  mounted(){
+			this.$root.$on("img_updated",function(){
+
+				console.log("in img_updated vcategory_board")
+
+				loading_modal.show_loading()
+
+			})
+		  },
+		  methods:{
+		  	
+		  	set_category:function(){
+		  		this.$root.$emit("set_category")
+		  	}
+		  }
+	  	});
+
+</script>
