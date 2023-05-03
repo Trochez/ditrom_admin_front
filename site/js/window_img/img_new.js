@@ -76,7 +76,9 @@ Vue.component('img_new',{
 
           selected_product.imgqnt += files.length
 
-          console("response ok addimg add imgqnt  "+JSON.stringify(response))
+          //console("response ok addimg add imgqnt  "+JSON.stringify(response))
+
+          alert(response.data)
 
 
       })

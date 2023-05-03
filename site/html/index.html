@@ -28,12 +28,12 @@
     <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
 
     <script src="https://unpkg.com/vue-ui-preloader"></script>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">
-
-		
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">		
 
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/properties.js"></script>
+
+    </script>
 
     <script type="text/javascript" src = "../js/mainmenu/main_menu.js"></script>
     <script type="text/javascript" src = "../js/mainmenu/option_menu.js"></script>
@@ -94,7 +94,6 @@
     <script type="text/javascript" src = "../js/window_inventory/inventory_list.js"></script>
     <script type="text/javascript" src = "../js/window_inventory/inventory_product_item.js"></script>
 
-
 	<title>
 		ditrom admin
 	</title>
@@ -105,7 +104,7 @@
 	<div ref = "main_menu" id="main_menu" class="">
 
 		<div class = "logo" v-on:click="reload">
-			<img src = "../img/ditrom.png"/>
+			<img :src = "'../img/'+properties.logoimage"/>
 		</div>
 
 		<main_menu :options = "options"></main_menu>
@@ -131,6 +130,8 @@
 	  el: '#main_menu',
 	  data () {
 	    return {
+
+            properties:{logoimage:properties.logoimage},
 
 	    	options:[
     					{
